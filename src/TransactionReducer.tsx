@@ -8,7 +8,7 @@
 export default function TransactionReducer(transactions,action){
   switch(action.type){
 // ADD TRANDSACTION
-case 'added': return[...transactions,{id:action.id,text:action.text,amount:action.amount,date:action.date}]
+case 'added': return[...transactions,{id:action.id,text:action.text,amount:action.amount,date:action.date,expense:action.expense}]
 
 // DELETE TRANSACTION
 

@@ -10,6 +10,8 @@ import TransactionReducer from "../TransactionReducer";
 import { TransactionContext, TransactionDispatchContext } from "../TransactionContext";
 
 
+
+
 export default function Container(){
 
   
@@ -19,20 +21,23 @@ const date = new Date();
 const[day,month,year]=[date.getDate(),date.getMonth(),date.getFullYear()];
 const datestring =`${day}-${month}-${year}`;
 
-  const data:{id:number,text:string,amount:number,date:string}[] =[{id:1,
+  const data:{id:number,text:string,amount:number,date:string,expense:boolean}[] =[{id:1,
   text:'book',
 amount:30,
-date:datestring
+date:datestring,
+expense:true
 },
 {id:2,
 text:'something',
 amount:1000,
-date:datestring
+date:datestring,
+expense:true
 },
 {id:3,
 text:'something else',
 amount:5,
-date: datestring}
+date: datestring,
+expense:false}
 ];
 
 
@@ -40,9 +45,12 @@ date: datestring}
 
 // FILTERS 
 
-const FILTERS:Filters ={all:()=> true,
-  expenses: (transaction) => transaction.completed,
-income: (transaction) => !transaction.completed
+const FILTERS:{
+all:()=>boolean;
+expenses:(transaction:{expense:boolean})=>boolean;
+income:(transaction:{expense:boolean})=>boolean;}={all:()=> true,
+  expenses: transaction => transaction.expense,
+income: transaction => !transaction.expense
 }
 
 const [filter,setFilter]=useState<'all' | 'expenses'| 'income'>('all');

@@ -9,18 +9,21 @@ export default function AddTransaction(){
   const inputtextref=useRef();
   const inputamountref= useRef();
   const inputdateref =useRef();
+  const inputcheckref=useRef()
 
-  function addTransaction(text,amount,date){
+  function addTransaction(text,amount,date,expense){
     dispatch({type:'added',
     id:nanoid(),
     text,
     amount,
-    date
+    date,
+    expense
     })
   }
 
   function handleaddTransaction(e){
-    addTransaction(inputtextref.current.value,inputamountref.current.value,inputdateref.current.value)
+   
+    addTransaction(inputtextref.current.value,inputamountref.current.value,inputdateref.current.value),inputcheckref.current.value
 
 
   }
@@ -55,7 +58,7 @@ export default function AddTransaction(){
           <div className="form-control">
             <label htmlFor="amount"
               >Amount <br />
-              (negative - expense, positive - income)</label>
+             </label>
             <input type="number" id="amount" placeholder="Enter amount..." ref={inputamountref} />
           </div>
           <div className="form-control">
@@ -63,6 +66,8 @@ export default function AddTransaction(){
               >date <br />
               </label>
             <input type="date" id="date"  ref={inputdateref}/>
+            <label htmlFor="income/expense">income/expense</label>
+            <input type="checkbox" ref={inputcheckref}/>
           </div>
           <button className="btn" onClick={()=>handleaddTransaction()}>Add transaction</button>
         </form>
