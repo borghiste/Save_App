@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { TransactionDispatchContext } from "../TransactionContext";
 
 export default function TransactionItem({transaction,id,date}){
-
   const dispatch=useContext(TransactionDispatchContext)
 
   function deleteTransaction(id){
@@ -18,7 +17,7 @@ export default function TransactionItem({transaction,id,date}){
         <li className="minus">
           {transaction.text} <span>{transaction.amount}</span><button className="delete-btn" onClick={()=>deleteTransaction(id)}>x</button>
           <small>{date}</small>
-          <i class={transaction.expense ?"fa-solid fa-minus" :"fa-solid fa-plus"}></i>
+          <i className={transaction.expense ?"fa-solid fa-minus" :"fa-solid fa-plus"}></i>
         </li>
          </>
     )

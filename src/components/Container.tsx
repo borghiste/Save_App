@@ -1,4 +1,4 @@
-import { useState,useReducer, useContext } from "react";
+import { useState,useReducer } from "react";
 import Balance from "./Balance";
 import IncExpContainer from "./IncExpContainer";
 import TransactionsList from "./TransactionsList";
@@ -45,6 +45,10 @@ expense:false}
 
 // FILTERS 
 
+const [filter,setFilter]=useState('all')
+
+
+
 const FILTERS:{
 all:()=>boolean;
 expenses:(transaction:{expense:boolean})=>boolean;
@@ -53,7 +57,7 @@ income:(transaction:{expense:boolean})=>boolean;}={all:()=> true,
 income: transaction => !transaction.expense
 }
 
-const [filter,setFilter]=useState<'all' | 'expenses'| 'income'>('all');
+
 
 
 // usereducer

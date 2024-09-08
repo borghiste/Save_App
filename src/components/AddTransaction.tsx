@@ -22,8 +22,8 @@ export default function AddTransaction(){
   }
 
   function handleaddTransaction(e){
-   
-    addTransaction(inputtextref.current.value,inputamountref.current.value,inputdateref.current.value),inputcheckref.current.value
+   console.log(inputcheckref)
+    addTransaction(inputtextref.current.value,inputamountref.current.value,inputdateref.current.value),inputcheckref.value
 
 
   }
@@ -67,7 +67,7 @@ export default function AddTransaction(){
               </label>
             <input type="date" id="date"  ref={inputdateref}/>
             <label htmlFor="income/expense">income/expense</label>
-            <input type="checkbox" ref={inputcheckref}/>
+            <input type="radio" ref={inputcheckref}/>
           </div>
           <button className="btn" onClick={()=>handleaddTransaction()}>Add transaction</button>
         </form>
