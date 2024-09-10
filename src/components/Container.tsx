@@ -1,11 +1,10 @@
-import { useState,useReducer } from "react";
+import { useState,useReducer, useContext } from "react";
 import Balance from "./Balance";
 import IncExpContainer from "./IncExpContainer";
 import TransactionsList from "./TransactionsList";
 import AddTransaction from "./AddTransaction";
 import TransactionItem from "./TransactionItem";
 import FilterButtonsContainer from "./FilterButtonsContainer";
-import {nanoid} from 'nanoid';
 import TransactionReducer from "../TransactionReducer";
 import { TransactionContext, TransactionDispatchContext } from "../TransactionContext";
 
@@ -37,30 +36,14 @@ expense:true
 text:'something else',
 amount:5,
 date: datestring,
-expense:false}
+expense:false},
+{id:4,
+text:'something 4',
+amount:877686,
+expense:true,
+date:datestring}
 ];
-
-
-
-
-// FILTERS 
-
-const [filter,setFilter]=useState('all')
-
-
-
-const FILTERS:{
-all:()=>boolean;
-expenses:(transaction:{expense:boolean})=>boolean;
-income:(transaction:{expense:boolean})=>boolean;}={all:()=> true,
-  expenses: transaction => transaction.expense,
-income: transaction => !transaction.expense
-}
-
-
-
-
-// usereducer
+// usereducer/transactions
 const [transactions,dispatch]=useReducer(TransactionReducer,data)
 
 
@@ -68,7 +51,33 @@ const [transactions,dispatch]=useReducer(TransactionReducer,data)
 
 
 
-const transactionsList = transactions.map(transaction => <TransactionItem transaction={transaction} key={transaction.id} id={transaction.id} date={transaction.date}/> );
+
+// FILTERS 
+
+
+const [filter,setFilter]=useState('all')
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+const transactionsList = transactions.map(transaction => <TransactionItem transaction={transaction} key={transaction.id} id={transaction.id} date={transaction.date} />  );
 
 
 
@@ -88,8 +97,9 @@ let balance = expenses-income
 
 
 return (
-  <TransactionContext.Provider value={transactions}>
-    <TransactionDispatchContext.Provider value={dispatch}>
+  
+  <TransactionContext.Provider value={transactions} >
+    <TransactionDispatchContext.Provider value={dispatch} >
 <>
 
 
@@ -99,7 +109,7 @@ return (
    <div className="container">
 <Balance balance={balance}/>
 <IncExpContainer  expenses={expenses} income={income}/>
-<FilterButtonsContainer filters={FILTERS} setFilter={setFilter}/>
+
 
 
 <TransactionsList transactionsList={transactionsList} />
@@ -114,5 +124,5 @@ return (
  
 
   )
-
 }
+

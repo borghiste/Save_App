@@ -22,7 +22,7 @@ export default function AddTransaction(){
   }
 
   function handleaddTransaction(e){
-   console.log(inputcheckref)
+
     addTransaction(inputtextref.current.value,inputamountref.current.value,inputdateref.current.value),inputcheckref.value
 
 

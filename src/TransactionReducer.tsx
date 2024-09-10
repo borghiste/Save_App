@@ -14,6 +14,10 @@ case 'added': return[...transactions,{id:action.id,text:action.text,amount:actio
 
 case 'deleted':  return transactions.filter(transaction => transaction.id !== action.id);
 
+// EDIT TRANSACTION
+
+case 'edited': return transactions.map(transaction =>{if(transaction.id === action.id){return {...transaction,text:action.text}}return transaction})
+
 
 
 }
