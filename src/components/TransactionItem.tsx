@@ -52,7 +52,7 @@ function handleSubmit(e){
 
 const TransactionEdit= (<li >
   <form  id='form' onSubmit={handleSubmit}>
-<input type="text"  onChange={handlenewText} value={} ref={newtextref}/>
+<input type="text"  onChange={handlenewText}  ref={newtextref}/>
 {transaction.text} 
 <button type='submit' >save</button>
 <button onClick={()=>setEditing(false)}>back</button>

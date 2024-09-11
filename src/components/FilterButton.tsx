@@ -1,7 +1,7 @@
-// export default function FilterButton(){
+ export default function FilterButton({name,setFilter}){
 
 
-//     return(
-//       <button ></button>
-//     )
-// }
+     return(
+       <button onClick={()=>setFilter(name)}>{name}</button>
+     )
+ }

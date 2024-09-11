@@ -53,6 +53,9 @@ const [transactions,dispatch]=useReducer(TransactionReducer,data)
 
 
 // FILTERS 
+const FILTERS={all: ()=>true,
+  expenses: transaction => transaction.expense,
+income: transaction => !transaction.expense}
 
 
 const [filter,setFilter]=useState('all')
@@ -77,7 +80,7 @@ const [filter,setFilter]=useState('all')
 
 
 
-const transactionsList = transactions.map(transaction => <TransactionItem transaction={transaction} key={transaction.id} id={transaction.id} date={transaction.date} />  );
+const transactionsList = transactions.filter(FILTERS[filter]).map(transaction => <TransactionItem transaction={transaction} key={transaction.id} id={transaction.id} date={transaction.date} />  );
 
 
 
@@ -109,6 +112,7 @@ return (
    <div className="container">
 <Balance balance={balance}/>
 <IncExpContainer  expenses={expenses} income={income}/>
+<FilterButtonsContainer filters={FILTERS} setFilter={setFilter} />
 
 
 
