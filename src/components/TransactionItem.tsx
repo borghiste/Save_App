@@ -9,7 +9,7 @@ export default function TransactionItem({transaction,id,date,editTransaction}){
   useEffect(()=>{if(editing){newtextref.current.focus()}})
 
 // delete transaction
-  function deleteTransaction(id){
+  function deleteTransaction(id:Number){
     dispatch({
       type:'deleted',
       id
